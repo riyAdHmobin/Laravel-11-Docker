@@ -6,15 +6,18 @@ setup:
 build:
 	docker-compose build --no-cache --force-rm
 
-stop:
-	docker-compose stop
+down:
+	docker-compose down
 
 up:
 	docker-compose up -d
 
+open-container:
+	docker exec -it laravel-11 bash
+
 composer-update:
-	docker exec laravel-docker bash -c "composer update"
-	
+	docker exec laravel-11 bash -c "composer update"
+
 data:
-	docker exec laravel-docker bash -c "php artisan migrate"
-	docker exec laravel-docker bash -c "php artisan db:seed"
+	docker exec laravel-11 bash -c "php artisan migrate"
+	docker exec laravel-11 bash -c "php artisan db:seed"
